@@ -46,4 +46,8 @@ int main() { //น่
 	}
 	
 	cout << res;
+
+	delete[] crane;
+	delete[] box;
+	delete[] vis;
 }
