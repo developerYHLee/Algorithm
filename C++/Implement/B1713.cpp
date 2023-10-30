@@ -5,11 +5,6 @@
 using namespace std;
 typedef pair<int, int> pii;
 
-int cmp(pii o1, pii o2) {
-		if (o1.first == o2.first) return o1.second < o2.second;
-		return o1.first < o2.first;
-	}
-
 vector<pii> recommend(101);
 
 int main() { //후보 추천하기
