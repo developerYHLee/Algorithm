@@ -25,7 +25,12 @@ int main() { //후보 추천하기
 		int s;
 		cin >> s;
 
-		if (c == N && recommend[s].first == 1e9) {
+		if (recommend[s].first != 1e9) {
+			recommend[s].first++;
+			continue;
+		}
+
+		if (c == N) {
 			int index = -1, MIN = 1e9 + 1, old = 1e9 + 1;
 			for (int j = 1; j <= 100; j++) {
 				if (MIN > recommend[j].first || (MIN == recommend[j].first && old > recommend[j].second)) {
@@ -39,14 +44,10 @@ int main() { //후보 추천하기
 			recommend[index].second = 1e9;
 			c--;
 		}
-		
-		if (recommend[s].first == 1e9) {
-			recommend[s].first = 1;
-			recommend[s].second = i;
 
-			c++;
-		}
-		else recommend[s].first++;
+		recommend[s].first = 1;
+		recommend[s].second = i;
+		c++;
 	}
 
 	for (int i = 1; i <= 100; i++) {
