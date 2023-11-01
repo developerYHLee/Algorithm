@@ -3,7 +3,6 @@
 using namespace std;
 typedef long long ll;
 
-const int MAX = 1e6 + 1;
 int dp_M[1000];
 
 int main() { //나머지 합
