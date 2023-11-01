@@ -26,7 +26,8 @@ int check(int row, int col, bool v, int cnt) {
 	if (map[row][col] == '*' || vis[row][col][v]) ret = -1;
 	else if (map[row][col] == '!') PQ.push(Node(cnt + 1, row, col, !v));
 	else if (map[row][col] == '#') {
-		PQ.push(Node(cnt, row, col, v));
+		PQ.push(Node(cnt, row, col, true));
+		PQ.push(Node(cnt, row, col, false));
 		ret = 1;
 	}
 
@@ -44,25 +45,10 @@ int main() { //거울 설치
 		string str;
 		cin >> str;
 
-		for (int j = 0; j < N; j++) map[i][j] = str[j];
-	}
-
-	for (int i = 0; i < N; i++) {
-		if (PQ.size() > 0) break;
-		
 		for (int j = 0; j < N; j++) {
-			if (PQ.size() > 0) break;
+			map[i][j] = str[j];
 
-			if (map[i][j] == '#') {
-				for (int k = 0; k < 4; k++) {
-					int r = i + dx[k];
-					int c = j + dy[k];
-
-					if (r < 0 || c < 0 || r >= N || c >= N || map[r][c] == '*') continue;
-
-					check(i, j, k < 2, 0);
-				}
-			}
+			if (PQ.size() == 0 && map[i][j] == '#') check(i, j, true, 0);
 		}
 	}
 	
