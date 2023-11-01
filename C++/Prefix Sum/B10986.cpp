@@ -19,10 +19,8 @@ int main() { //나머지 합
 		cin >> n;
 
 		dp += n;
-
-		if (dp % M == 0) res++;
 		res += dp_M[dp % M]++;
 	}
 
-	cout << res;
+	cout << (res + dp_M[0]);
 }
