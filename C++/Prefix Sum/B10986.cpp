@@ -15,15 +15,13 @@ int main() { //나머지 합
 	int N, M;
 	cin >> N >> M;
 
+	ll res = 0;
 	for (int i = 1; i <= N; i++) {
 		ll n;
 		cin >> n;
 
 		dp[i] = dp[i - 1] + n;
-	}
 
-	ll res = 0;
-	for (int i = 1; i <= N; i++) {
 		if (dp[i] % M == 0) res++;
 		res += dp_M[dp[i] % M]++;
 	}
