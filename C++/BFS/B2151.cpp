@@ -9,13 +9,9 @@ struct Node {
 	bool v;
 
 	Node(int _cnt, int _row, int _col, bool _v) : cnt(_cnt), row(_row), col(_col), v(_v) {};
-
-	bool operator<(const Node& o) const {
-		return cnt > o.cnt;
-	}
 };
 
-priority_queue<Node> PQ;
+queue<Node> Q;
 char map[50][50];
 bool vis[50][50][2];
 int N, dx[4] = { 1, -1, 0, 0 }, dy[4] = { 0, 0, 1, -1 };
@@ -24,10 +20,10 @@ int check(int row, int col, bool v, int cnt) {
 	int ret = 0;
 
 	if (map[row][col] == '*' || vis[row][col][v]) ret = -1;
-	else if (map[row][col] == '!') PQ.push(Node(cnt + 1, row, col, !v));
+	else if (map[row][col] == '!') Q.push(Node(cnt + 1, row, col, !v));
 	else if (map[row][col] == '#') {
-		PQ.push(Node(cnt, row, col, true));
-		PQ.push(Node(cnt, row, col, false));
+		Q.push(Node(cnt, row, col, true));
+		Q.push(Node(cnt, row, col, false));
 		ret = 1;
 	}
 
@@ -48,13 +44,13 @@ int main() { //거울 설치
 		for (int j = 0; j < N; j++) {
 			map[i][j] = str[j];
 
-			if (PQ.size() == 0 && map[i][j] == '#') check(i, j, true, 0);
+			if (Q.size() == 0 && map[i][j] == '#') check(i, j, true, 0);
 		}
 	}
 	
-	while (!PQ.empty()) {
-		Node cur = PQ.top();
-		PQ.pop();
+	while (!Q.empty()) {
+		Node cur = Q.front();
+		Q.pop();
 
 		int cnt = cur.cnt, row = cur.row, col = cur.col;
 		bool v = cur.v;
