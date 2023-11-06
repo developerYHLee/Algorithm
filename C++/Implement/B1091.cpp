@@ -4,7 +4,7 @@ using namespace std;
 
 int N, P[48], S[48];
 
-inline void check_s(int* s, int* temp) {
+inline void shuffle_card(int* s, int* temp) {
 	for (int i = 0; i < N; i++) temp[i] = S[s[i]];
 }
 
@@ -57,13 +57,13 @@ int main() { //Ä«µå ¼¯±â
 		cout << 0;
 		return 0;
 	}
-	check_s(s1, s2);
+	shuffle_card(s1, s2);
 
 	if (check_P(s2)) {
 		cout << 1;
 		return 0;
 	}
-	check_s(s2, s1);
+	shuffle_card(s2, s1);
 
 	int count = 2;
 	bool c = true;
@@ -72,7 +72,7 @@ int main() { //Ä«µå ¼¯±â
 			c = false;
 
 			if (check_P(s1)) break;
-			check_s(s1, s2);
+			shuffle_card(s1, s2);
 
 			if (!check_S(s2)) {
 				cout << -1;
@@ -83,7 +83,7 @@ int main() { //Ä«µå ¼¯±â
 			c = true;
 
 			if (check_P(s2)) break;
-			check_s(s2, s1);
+			shuffle_card(s2, s1);
 
 			if (!check_S(s1)) {
 				cout << -1;
