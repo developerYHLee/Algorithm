@@ -43,7 +43,7 @@ void solve(int index, int cnt) {
             ans = vis;
         }
         else if (MAX == score) check();
-
+		 
         return;
     }
 
