@@ -6,41 +6,42 @@ using namespace std;
 typedef pair<int, bool> pib;
 
 int degree[50001][2], target[50001][2];
-bool res[2][50001];
-int N, M, c;
+bool res[50001][2];
+int N, M;
+
+int make_target(int me, bool team) {
+	return target[me][team];
+}
 
 void topological_sort() {
 	queue<pib> Q;
+
 	for (int i = 1; i <= N; i++) {
-		if (degree[i][0] == 0) {
-			Q.push({ i, false });
-			degree[i][0] = -1;
-		}
+		if (degree[i][0] == 0) Q.push({ i, 0 });
 	}
 	for (int i = 1; i <= M; i++) {
-		if (degree[i][1] == 0) {
-			Q.push({ i, true });
-			degree[i][1] = -1;
-		}
+		if (degree[i][1] == 0) Q.push({ i, 1 });
 	}
 
 	while (!Q.empty()) {
 		pib cur = Q.front();
 		Q.pop();
-		c++;
 
-		bool team = cur.second, enemy = !team;
-		int index = cur.first, cur_target = target[index][team];
+		bool team = cur.second;
+		int me = cur.first, my_target = make_target(me, team);
 
-		res[enemy][cur_target] = false;
-		degree[cur_target][enemy] = -1;
+		//활을 적에게 겨냥한다.
+		res[me][team] = true;
+
+		//degree가 -1이 라는 것은 활이든 방패든 확정 짓는 것이다.
+		degree[me][team] = -1;
+
+		if (degree[my_target][!team] <= -1) continue;
+		degree[my_target][!team] = -1;
 
 		//방패를 든 사람은 활을 쏠 수 없기 때문에 표적의 degree를 하나 빼준다.
-		int delete_target = target[cur_target][enemy];
-		if (--degree[delete_target][team] == 0) {
-			Q.push({ delete_target, team });
-			degree[delete_target][team] = -1;
-		}
+		int delete_target = target[my_target][!team];
+		if (--degree[delete_target][team] == 0) Q.push({ delete_target, team });
 	}
 }
 
@@ -58,32 +59,13 @@ int main() { //무술 연습
 		cin >> target[i][1];
 		degree[target[i][1]][0]++;
 	}
-	fill_n(res[0], N + 1, true);
-	fill_n(res[1], M + 1, true);
-
-	int w = N + M;
-	w = w % 2 == 0 ? w : w + 1;
-
 	topological_sort();
-	while (c < w / 2) {
-		for (int i = 1; i <= N; i++) {
-			if (res[0][i] && degree[i][0] != -1) {
-				int t = target[i][0];
-				
-				if (res[1][t] && degree[t][1] != -1) {
-					res[1][t] = false;
-					degree[t][1] = -1;
-					degree[i][0] = 0;
-
-					break;
-				}
-			}
-		}
-
-		topological_sort();
+	
+	for (int i = 1; i <= N; i++) {
+		if (degree[i][0] > 0) res[i][0] = true;
 	}
 
-	for (int i = 1; i <= N; i++) cout << res[0][i];
-	cout << '\n';
-	for (int i = 1; i <= M; i++) cout << res[1][i];
+	for (int i = 1; i <= N; i++) cout << res[i][0];
+	cout << "\n";
+	for (int i = 1; i <= M; i++) cout << res[i][1];
 }
