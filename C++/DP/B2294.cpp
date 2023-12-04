@@ -4,11 +4,7 @@
 
 using namespace std;
 
-struct comp {
-	bool operator()(const int& o1, const int& o2) const { return o1 > o2; }
-};
-
-set<int, comp> S;
+set<int> S;
 int N, K, dp[10001];
 
 void input() {
