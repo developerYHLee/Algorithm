@@ -3,7 +3,6 @@
 
 using namespace std;
 
-int arr[300000];
 int main() { //우리집엔 도서관이 있어
 	ios::sync_with_stdio(0);
 	cin.tie(0);
@@ -12,12 +11,13 @@ int main() { //우리집엔 도서관이 있어
 	int N;
 	cin >> N;
 
-	for (int i = 0; i < N; i++) cin >> arr[i];
-
 	int MAX = 0, res = 0;
 	for (int i = 0; i < N; i++) {
-		MAX = max(MAX, arr[i]);
-		if (arr[i] < MAX) res = max(res, arr[i]);
+		int num;
+		cin >> num;
+
+		MAX = max(MAX, num);
+		if (num < MAX) res = max(res, num);
 	}
 
 	cout << res;
