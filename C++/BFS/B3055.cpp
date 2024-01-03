@@ -48,6 +48,7 @@ string bfs() {
 				if (name == 'S') return to_string(cnt + 1);
 				else continue;
 			}
+
 			Q.push(Node(name, r, c, cnt + 1));
 			_map[r][c] = name;
 		}
