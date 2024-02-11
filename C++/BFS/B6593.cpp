@@ -21,7 +21,7 @@ void solve() {
 		Node node = Q.front();
 		Q.pop();
 
-		int height = node.h, row = node.r, col = node.c;
+		int height = node.h, row = node.r, col = node.c, nextCnt = node.cnt + 1;
 
 		for (int i = 0; i < 6; i++) {
 			int h = height + dz[i];
@@ -30,11 +30,11 @@ void solve() {
 
 			if (h < 0 || r < 0 || c < 0 || h >= H || r >= R || c >= C || build[h][r][c] == '#') continue;
 			if (build[h][r][c] == 'E') {
-				cout << "Escaped in " << (node.cnt + 1) << " minute(s).\n";
+				cout << "Escaped in " << nextCnt << " minute(s).\n";
 				return;
 			}
 
-			Q.push(Node(h, r, c, node.cnt + 1));
+			Q.push(Node(h, r, c, nextCnt));
 			build[h][r][c] = '#';
 		}
 	}
