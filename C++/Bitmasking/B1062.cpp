@@ -10,6 +10,14 @@ vector<int> word[50];
 ll key;
 bool vis[26];
 
+void setAntic(char a) {
+	int n = a - 'a';
+
+	key |= ((ll)1 << n);
+	vis[n] = true;
+	K--;
+}
+
 void input() {
 	cin >> N >> K;
 	for (int i = 0; i < N; i++) {
@@ -19,17 +27,11 @@ void input() {
 		for (char c : str) word[i].push_back(c - 'a');
 	}
 
-	key += 1;
-	vis[0] = true;
-	key += ((ll)1 << 2);
-	vis[2] = true;
-	key += ((ll)1 << 8);
-	vis[8] = true;
-	key += ((ll)1 << 13);
-	vis[13] = true;
-	key += ((ll)1 << 19);
-	vis[19] = true;
-	K -= 5;
+	setAntic('a');
+	setAntic('n');
+	setAntic('t');
+	setAntic('i');
+	setAntic('c');
 }
 
 void checkAlpha() {
