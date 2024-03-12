@@ -8,13 +8,11 @@ typedef long long ll;
 int N, K, res;
 vector<int> word[50];
 ll key;
-bool vis[26];
 
 void setAntic(char a) {
 	int n = a - 'a';
 
 	key |= ((ll)1 << n);
-	vis[n] = true;
 	K--;
 }
 
@@ -60,7 +58,7 @@ void recur(int index, int cnt) {
 	}
 
 	for (int i = index; i < 26; i++) {
-		if (vis[i]) continue;
+		if (key & ((ll)1 << i)) continue;
 
 		key |= ((ll)1 << i);
 		recur(i + 1, cnt + 1);
