@@ -60,9 +60,9 @@ void recur(int index, int cnt) {
 	for (int i = index; i < 26; i++) {
 		if (vis[i]) continue;
 
-		key += ((ll)1 << i);
+		key |= ((ll)1 << i);
 		recur(i + 1, cnt + 1);
-		key -= ((ll)1 << i);
+		key &= ~((ll)1 << i);
 	}
 }
 
