@@ -60,7 +60,6 @@ int main() { //트리의 독립집합
 	}
 
 	solve(0, 1);
-
 	if (dp[1][0] > dp[1][1]) {
 		cout << dp[1][0] << '\n';
 		save_node.push_back(1);
