@@ -8,8 +8,6 @@ int arr[81], N;
 void input() { cin >> N; }
 
 bool checkArr(int index) {
-	if (index == 1) return true;
-
 	for (int i = index / 2; i > 0; i--) {
 		bool ch = false;
 		for (int j = 0; j < i; j++) {
