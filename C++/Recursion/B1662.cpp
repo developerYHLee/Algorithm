@@ -10,8 +10,7 @@ void input() { cin >> S; }
 int recur() {
 	int ret = 0;
 	
-	while (index > 0) {
-		index--;
+	while (--index >= 0) {
 		if (S[index] == ')') ret += recur() * (S[--index] - '0');
 		else if (S[index] == '(') return ret;
 		else ret++;
