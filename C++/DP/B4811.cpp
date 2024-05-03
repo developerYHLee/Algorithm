@@ -5,15 +5,6 @@ typedef long long ll;
 
 ll dp[31];
 
-ll getDp(int sN, int n, int h) {
-	if (sN == n) return dp[0];
-	else if (n == h) return dp[sN - n];
-
-	ll ret = getDp(sN, n + 1, h) + getDp(sN, n, h + 1);
-
-	return ret;
-}
-
 void solve() {
 	dp[0] = 1;
 	
