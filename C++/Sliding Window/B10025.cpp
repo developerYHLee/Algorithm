@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int N, K, G[2'000'001];
+int N, K, G[1'000'001];
 
 void input() {
 	cin >> N >> K;
