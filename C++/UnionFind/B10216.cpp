@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 #include <memory.h>
 
 using namespace std;
