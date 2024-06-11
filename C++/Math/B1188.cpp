@@ -9,8 +9,8 @@ void input() {
 }
 
 int recur(int n, int m) {
-	if (!n) return 0;
-	if (m % n == 0) return (m - 1) / n * n;
+	if (n % m == 0) return 0;
+	else if (m % n == 0) return (m - 1) / n * n;
 	else if (m > n) return m / n * n + recur(n, m % n);
 	else return recur(n % m, m);
 }
