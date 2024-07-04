@@ -14,6 +14,7 @@ void merge(int x, int y) {
 	x = find(x);
 	y = find(y);
 
+	if (x == y) notTree[x] = true;
 	if (notTree[x]) notTree[y] = true;
 	parent[x] = y;
 }
@@ -30,11 +31,7 @@ void input() {
 		int x, y;
 		cin >> x >> y;
 
-		x = find(x);
-		y = find(y);
-
-		if (x == y) notTree[x] = true;
-		else merge(x, y);
+		merge(x, y);
 	}
 
 	int t = 0;
