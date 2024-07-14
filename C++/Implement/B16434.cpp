@@ -25,16 +25,13 @@ void input() {
 ll getDamage(int index) { return (room[index].hp - 1) / curAtt * room[index].att; }
 
 void enterRoom(ll& hasToRemainHp, int index) {
-	int type = room[index].type, att = room[index].att, hp = room[index].hp;
-
-	if (type == 1) {
-		ll damage = getDamage(index);
-		hasToRemainHp += damage;
+	if (room[index].type == 1) {
+		hasToRemainHp += getDamage(index);
 		maxHp = max(maxHp, hasToRemainHp);
 	}
 	else {
-		curAtt -= att;
-		hasToRemainHp = max((ll)1, hasToRemainHp - hp);
+		curAtt -= room[index].att;
+		hasToRemainHp = max((ll)1, hasToRemainHp - room[index].hp);
 	}
 }
 
