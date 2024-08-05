@@ -35,6 +35,7 @@ ll recur(ll num) {
 }
 
 void solve() {
+	makeDp();
 	cout << recur(B) - recur(A - 1);
 }
 
@@ -43,7 +44,6 @@ int main() { //2로 몇 번 나누어질까
 	cin.tie(0);
 	cout.tie(0);
 
-	makeDp();
 	input();
 	solve();
 }
