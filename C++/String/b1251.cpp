@@ -12,7 +12,7 @@ int main() { //단어 나누기
 	string str;
 	cin >> str;
 
-	string res = "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz";
+	string res = "z";
 
 	for (int i = 1; i < str.size(); i++) {
 		for (int j = 1; i + j < str.size(); j++) {
