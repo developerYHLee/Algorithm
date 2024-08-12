@@ -11,13 +11,14 @@ void input() {
 }
 
 void solve() {
+	res = arr[1];
+
 	for (int i = 1; i <= N; i++) {
 		dp[i][0] = max(dp[i - 1][0] + arr[i], arr[i]);
 		dp[i][1] = max(dp[i - 1][0], dp[i - 1][1] + arr[i]);
+	
+		if(i != 1) res = max({ res, dp[i][0], dp[i][1] });
 	}
-
-	res = dp[1][0];
-	for (int i = 2; i <= N; i++) res = max({ res, dp[i][0], dp[i][1] });
 
 	cout << res;
 }
