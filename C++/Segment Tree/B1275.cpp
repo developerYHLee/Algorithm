@@ -8,7 +8,7 @@ ll arr[410'000];
 
 void setFirstIndex() {
 	firstIndex = 1;
-	while (firstIndex <= N) firstIndex *= 2;
+	while (firstIndex < N) firstIndex *= 2;
 }
 
 void setArr() {
