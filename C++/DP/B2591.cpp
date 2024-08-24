@@ -18,13 +18,14 @@ int recur(int index) {
 		string temp = "";
 		temp += str[index];
 		temp += str[index + 1];
+
 		if (stoi(temp) <= 34) dp[index] += recur(index + 2);
 	}
 	
 	return dp[index];
 }
 
-int main() { //ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½
+int main() { //¼ýÀÚÄ«µå
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 	cout.tie(0);
