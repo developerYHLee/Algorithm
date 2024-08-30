@@ -7,7 +7,7 @@ using namespace std;
 typedef unsigned long long ull;
 
 ull N;
-string dp[1000];
+string dp[100];
 vector<string> res;
 
 string mulNum(string str, int x) {
